@@ -1,0 +1,71 @@
+# Example configuration file for Deal Intelligence Agent
+# Copy to config.yaml and fill in your values
+
+telegram:
+  bot_token: "YOUR_BOT_TOKEN_HERE"
+  chat_id: "YOUR_CHAT_ID_HERE"
+
+connectors:
+  pepper_rss:
+    enabled: true
+    feeds:
+      electronics: "https://www.pepper.com/feeds/electronics.rss"
+      games: "https://www.pepper.com/feeds/games.rss"
+      fashion: "https://www.pepper.com/feeds/fashion.rss"
+  
+  # Future connectors - placeholder structure
+  ibood:
+    enabled: false
+    url: "https://ibood.com/deals"
+  
+  steam_deals:
+    enabled: false
+    url: "https://steamcommunity.com/"
+
+profile:
+  preferred_brands:
+    - Apple
+    - Sony
+    - Nintendo
+    - Samsung
+  
+  preferred_categories:
+    technology: 1.0
+    games: 0.8
+    electronics: 0.9
+    travel: 0.6
+    fashion: 0.4
+  
+  preferred_stores:
+    - Amazon
+    - Coolblue
+    - MediaMarkt
+    - Bol
+  
+  interests:
+    gaming: 0.9
+    tech: 1.0
+    gadgets: 0.8
+    deals: 1.0
+  
+  minimum_savings_percentage: 10.0
+  minimum_savings_euro: 5.0
+
+notifications:
+  immediate_threshold: 95
+  daily_digest_threshold: 90
+  weekly_digest_threshold: 80
+
+# Future notification channels
+notification_channels:
+  telegram:
+    enabled: true
+  discord:
+    enabled: false
+    webhook: "YOUR_WEBHOOK_HERE"
+  email:
+    enabled: false
+    address: "your@email.com"
+  teams:
+    enabled: false
+    webhook: "YOUR_WEBHOOK_HERE"
