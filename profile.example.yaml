@@ -1,0 +1,46 @@
+# Example user profile for Deal Intelligence Agent
+# Customize these settings to match your preferences
+
+preferred_brands:
+  - Apple
+  - Sony
+  - Nintendo
+  - Samsung
+  - Canon
+  - Nikon
+  - Corsair
+  - Logitech
+
+preferred_categories:
+  technology: 1.0      # Highest priority
+  electronics: 0.9
+  games: 0.8
+  travel: 0.6
+  sports: 0.5
+  fashion: 0.4
+  home: 0.3
+
+preferred_stores:
+  - Amazon
+  - Coolblue
+  - MediaMarkt
+  - Bol
+  - FNAC
+
+interests:
+  gaming: 0.9
+  tech: 1.0
+  gadgets: 0.8
+  deals: 1.0
+  productivity: 0.7
+  photography: 0.6
+  fitness: 0.4
+
+# Minimum thresholds
+minimum_savings_percentage: 10.0  # Ignore if less than 10% savings
+minimum_savings_euro: 5.0         # Ignore if less than €5 savings
+
+# Notification preferences
+notification_threshold: 80         # Minimum score to notify
+include_in_daily_digest: 85        # Include in daily if >= 85
+include_in_weekly_digest: 75       # Include in weekly if >= 75
