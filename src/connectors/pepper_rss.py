@@ -92,10 +92,14 @@ class PepperRSSConnector(BaseConnector):
             # Parse prices from title and description
             current_price = self._extract_current_price(title, description)
             estimated_normal_price = self._extract_estimated_price(description)
-            
-            if current_price is None or estimated_normal_price is None:
-                logger.debug(f"Pepper RSS: Could not extract prices for: {title}")
+
+            if current_price is None:
+                logger.debug(f"Pepper RSS: Could not extract current price for: {title}")
                 return None
+
+            # Estimate normal price if not found (20% markup)
+            if estimated_normal_price is None:
+            estimated_normal_price = current_price * 1.2
             
             # Extract metadata
             store = self._extract_store(title, description)
