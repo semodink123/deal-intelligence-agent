@@ -166,21 +166,8 @@ class PepperRSSConnector(BaseConnector):
             logger.warning(f"Pepper RSS: Error parsing entry: {e}")
             return None
     
-    def _extract_current_price(self, title: str, description: str) -> Optional[float]:
-        """Extract current price from title or description.
-        
-        Looks for patterns like "€19.99", "19.99€", "19,99€", etc.
-        """
-        # Try title first, then description
-        for text in [title, description]:
-            price = self._extract_price_from_text(text)
-            if price is not None:
-                return price
-        return None
-    
     def _extract_price_from_text(self, text: str) -> Optional[float]:
-        """Extract a price value from text."""
-        
+        """Extract a price value from text.
         Looks for patterns like "normal price €29.99", "regular €29.99", etc.
         If not found, estimates as current_price * 1.2 (20% markup).
         """
