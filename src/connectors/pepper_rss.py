@@ -187,22 +187,6 @@ class PepperRSSConnector(BaseConnector):
         
         return None  # Let caller estimate if needed
     
-    def _extract_price_from_text(self, text: str) -> Optional[float] "Exract a price value from text."
-
-    if not text:
-        return None
-
-    pattern = r"[€$]?\s*([0-9]+(?:[.,][0-9]{2})?)\s*[€$]?"
-    match = re.search(pattern, text)
-
-    if not match:
-        return None
-
-    try:
-        return float(match.group(1).replace(",", "."))
-    except ValueError:
-        return None
-    
     def _extract_store(self, title: str, description: str) -> str:
         """Extract store/retailer name from title or description.
         
