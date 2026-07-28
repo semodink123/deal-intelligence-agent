@@ -9,6 +9,7 @@ import feedparser
 from src.models import Deal
 from src.connectors.base import BaseConnector
 from datetime import datetime, timedelta
+from html import unescape
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +85,9 @@ class PepperRSSConnector(BaseConnector):
             # Extract basic fields
             title = entry.get("title", "").strip()
             link = entry.get("link", "").strip()
-            description = entry.get("description", "").strip()
+            description = unescape(
+                entry.get("description", "").strip()
+            )
             logger.warning(f"ENTRY KEYS: {list(entry.keys())}")
             logger.warning(f"LINK: {link}")
             logger.info(f"TITLE: {title}")
