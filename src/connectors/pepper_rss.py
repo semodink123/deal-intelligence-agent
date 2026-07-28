@@ -85,11 +85,19 @@ class PepperRSSConnector(BaseConnector):
             title = entry.get("title", "").strip()
             link = entry.get("link", "").strip()
             description = entry.get("description", "").strip()
+            logger.warning(f"ENTRY KEYS: {list(entry.keys())}")
+            logger.warning(f"LINK: {link}")
             logger.info(f"TITLE: {title}")
             logger.info(f"DESCRIPTION: {description}")
             
-            if not title or not link:
-                logger.debug("Pepper RSS: Skipping entry without title or link")
+            if not title:
+                logger.warning("Missing title")
+                return None
+
+            if not link:
+                logger.warning(
+                    f"Missing link for entry: {title}"
+                )
                 return None
             
             # Parse prices from title and description
@@ -97,7 +105,12 @@ class PepperRSSConnector(BaseConnector):
             estimated_normal_price = self._extract_estimated_price(description)
 
             if current_price is None:
-                logger.debug(f"Pepper RSS: Could not extract current price for: {title}")
+                logger.warning(
+                    f"No current price extracted: {title}"
+                )
+                logger.warning(
+                    f"Description was: {description[:500]}"
+                )
                 return None
 
             # Estimate normal price if not found (20% markup)
