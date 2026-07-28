@@ -20,7 +20,7 @@ class PepperRSSConnector(BaseConnector):
     RSS feed contains: title, price, description, link.
     """
     
-    DEFAULT_RSS_URL = "https://nl.pepper.com/rss/hottest"
+    DEFAULT_RSS_URL = "https://nl.pepper.com/rss/new"
     
     def __init__(self, config: dict = None):
         super().__init__(name="pepper_rss", config=config or {})
