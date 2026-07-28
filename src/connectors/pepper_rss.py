@@ -8,6 +8,7 @@ import feedparser
 
 from src.models import Deal
 from src.connectors.base import BaseConnector
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -111,6 +112,15 @@ class PepperRSSConnector(BaseConnector):
             
             # Parse discovery time
             discovered_at = self._parse_published_date(entry)
+
+            # Skip old deals
+            MAX_DEAL_AGE_DAYS = 7
+
+            if discovered_at < datetime.utcnow() - timedelta(days=MAX_DEAL_AGE_DAYS):
+                logger.info(
+                    f"Pepper RSS: Skipping old deal ({(datetime.utcnow() - discovered_at).days} days old): {title}"
+                )
+                return None
             
             # Create Deal object
             deal = Deal(
