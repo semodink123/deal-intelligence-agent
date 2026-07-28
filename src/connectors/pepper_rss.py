@@ -200,25 +200,20 @@ class PepperRSSConnector(BaseConnector):
         
         return None  # Let caller estimate if needed
     
-    def _extract_price_from_text(self, text: str) -> Optional[float]:
-        """Extract a price value from text using regex.
-        
-        Handles formats like: €19.99, 19.99€, €19,99, 19,99€
-        """
-        if not text:
-            return None
-        
-        # Match prices with € or $ symbol
-        pattern = r"[€$]?\s*([0-9]+[.,][0-9]{2})\s*[€$]?"
-        match = re.search(pattern, text)
-        
-        if match:
-            price_str = match.group(1).replace(",", ".")
-            try:
-                return float(price_str)
-            except ValueError:
-                pass
-        
+    def _extract_price_from_text(self, text: str) -> Optional[float] "Exract a price value from text."
+
+    if not text:
+        return None
+
+    pattern = r"[€$]?\s*([0-9]+(?:[.,][0-9]{2})?)\s*[€$]?"
+    match = re.search(pattern, text)
+
+    if not match:
+        return None
+
+    try:
+        return float(match.group(1).replace(",", "."))
+    except ValueError:
         return None
     
     def _extract_store(self, title: str, description: str) -> str:
