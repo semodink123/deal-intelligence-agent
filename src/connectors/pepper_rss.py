@@ -13,13 +13,13 @@ logger = logging.getLogger(__name__)
 
 
 class PepperRSSConnector(BaseConnector):
-    """Fetches deals from Pepper.pl RSS feed.
+    """Fetches deals from Pepper.nl RSS feed.
     
     Pepper is a European deals aggregator platform.
     RSS feed contains: title, price, description, link.
     """
     
-    DEFAULT_RSS_URL = "https://www.pepper.pl/rss/hottest"
+    DEFAULT_RSS_URL = "https://nl.pepper.com/rss/hottest"
     
     def __init__(self, config: dict = None):
         super().__init__(name="pepper_rss", config=config or {})
@@ -127,7 +127,7 @@ class PepperRSSConnector(BaseConnector):
                 brand=brand,
                 metadata={
                     "description": description,
-                    "feed": "Pepper.pl",
+                    "feed": "Pepper.nl",
                 }
             )
             
@@ -196,7 +196,7 @@ class PepperRSSConnector(BaseConnector):
     def _extract_store(self, title: str, description: str) -> str:
         """Extract store/retailer name from title or description.
         
-        Common Pepper.pl stores: Amazon, Coolblue, MediaMarkt, bol.com, etc.
+        Common Pepper.nl stores: Amazon, Coolblue, MediaMarkt, bol.com, etc.
         """
         known_stores = [
             "Amazon", "Coolblue", "MediaMarkt", "Bol.com", "Zalando",
