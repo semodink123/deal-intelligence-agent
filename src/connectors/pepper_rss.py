@@ -178,8 +178,8 @@ class PepperRSSConnector(BaseConnector):
                 return price
         return None
     
-    def _extract_estimated_price(self, description: str) -> Optional[float]:
-        """Extract estimated normal price from description.
+    def _extract_price_from_text(self, text: str) -> Optional[float]:
+        """Extract a price value from text."""
         
         Looks for patterns like "normal price €29.99", "regular €29.99", etc.
         If not found, estimates as current_price * 1.2 (20% markup).
