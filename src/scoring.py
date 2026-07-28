@@ -175,7 +175,7 @@ class BestFriendTest:
             return False
 
         # Test 2: Must have reasonable final score
-        if deal.final_score < 50:
+        if deal.final_score < 40:
             logger.debug(f"Best Friend Test FAIL (score): {deal.title} - {deal.final_score}")
             return False
 
