@@ -43,7 +43,7 @@ class PepperRSSConnector(BaseConnector):
         
         try:
             logger.info(f"Fetching deals from Pepper RSS: {self.rss_url}")
-            feed = feedparser.parse(self.rss_url, timeout=self.timeout)
+            feed = feedparser.parse(self.rss_url)
             
             if feed.bozo:
                 logger.warning(f"Pepper RSS: Feed parsing warning: {feed.bozo_exception}")
