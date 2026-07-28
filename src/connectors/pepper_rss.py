@@ -100,7 +100,7 @@ class PepperRSSConnector(BaseConnector):
 
             # Estimate normal price if not found (20% markup)
             if estimated_normal_price is None:
-                estimated_normal_price = current_price * 1.2
+                return None
             
             # Extract metadata
             store = self._extract_store(title, description)
