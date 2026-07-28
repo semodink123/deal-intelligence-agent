@@ -85,6 +85,8 @@ class PepperRSSConnector(BaseConnector):
             title = entry.get("title", "").strip()
             link = entry.get("link", "").strip()
             description = entry.get("description", "").strip()
+            logger.info(f"TITLE: {title}")
+            logger.info(f"DESCRIPTION: {description}")
             
             if not title or not link:
                 logger.debug("Pepper RSS: Skipping entry without title or link")
