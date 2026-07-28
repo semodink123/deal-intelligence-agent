@@ -26,7 +26,6 @@ jobs:
         run: python test_e2e.py
       
       - name: Test Telegram Connection
-        if: secrets.TELEGRAM_BOT_TOKEN != ''
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
