@@ -144,6 +144,16 @@ class DealScoringEngine:
         )
         deal.regret_score = DealScoringEngine.calculate_regret_score(deal)
 
+        logger.info(
+            f"{deal.title} | "
+            f"Historical={deal.historical_price_score:.1f} | "
+            f"Quality={deal.quality_score:.1f} | "
+            f"Savings={deal.savings_score:.1f} | "
+            f"Scarcity={deal.scarcity_score:.1f} | "
+            f"Relevance={deal.personal_relevance_score:.1f} | "
+            f"Regret={deal.regret_score:.1f}"
+        )
+
         # Calculate weighted final score
         deal.final_score = (
             deal.historical_price_score * DealScoringEngine.WEIGHTS["historical_price"]
